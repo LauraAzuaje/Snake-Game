@@ -10,18 +10,19 @@ screen = Screen()
 screen.setup(width=600, height=600)
 screen.bgcolor("black")
 screen.title("Snake Game")
-#disable default Turtle animation
+
+#disable default turtle animation
 screen.tracer(0)
 
 snake = Snake()
 
-#Object food
+#food object
 food = Food()
 
-#Object score
+#score object
 score = Score()
 
-#Metodo de escucha
+#listening method
 screen.listen()
 screen.onkey(snake.up, "Up")
 screen.onkey(snake.down, "Down")
@@ -36,17 +37,18 @@ while game_is_on:
     time.sleep(0.1)
     snake.move()
     
-    #Detect colisions food
+    #Detect food collision
     if snake.segments[0].distance(food) < 15:
         food.refresh()
         score.increase_score()
         snake.extend()
-    #Detect colisions pared
+
+    #Detect wall collision
     if snake.segments[0].xcor() > 280 or snake.segments[0].xcor() < -280 or snake.segments[0].ycor() >280 or snake.segments[0].ycor() < -280:
         game_is_on = False
         score.game_over()
 
-    #Detect colisions segment snake
+    #Detect snake segment collision
     for segment in snake.segments:
         if segment == snake.segments[0]:
             pass

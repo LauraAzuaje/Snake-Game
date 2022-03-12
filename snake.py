@@ -4,7 +4,7 @@ from turtle import Turtle, Screen
 STARTING_POSITION = [(0,0),(-20,0),(-40,0)]
 
 class Snake:
-    #Constructor
+    #builder
     def __init__(self):
          # save snake segments
         self.segments = []
@@ -24,7 +24,7 @@ class Snake:
 
     def extend(self):
         self.add_segment(self.segments[-1].position())
-
+    #snake initial position
     def move(self):
         for seg_num in range(len(self.segments) -1, 0, -1):
             new_x = self.segments[seg_num -1].xcor()
@@ -32,18 +32,19 @@ class Snake:
             self.segments[seg_num].goto(new_x, new_y)
         self.segments[0].forward(20)
 
+    #moving up
     def up(self):
         if self.segments[0].heading() != 270:
             self.segments[0].setheading(90)
-
+    #moving down
     def down(self):
         if self.segments[0].heading() != 90:
             self.segments[0].setheading(270)
-
+    #moving right
     def right(self):
         if self.segments[0].heading() != 180:
             self.segments[0].setheading(0)
-
+    #moving left
     def left(self):
         if self.segments[0].heading() != 0:
             self.segments[0].setheading(180)
